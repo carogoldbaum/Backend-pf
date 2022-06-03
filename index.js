@@ -1,16 +1,16 @@
 import express from "express";
 import cors from "cors";
-import passport from 'passport';
-import RwgistrarseRouter from "./src/controllers/registrarseController.js";
+import usuarioRouter from "../Backend-pf/controllers/usuarioController.js";
+import rubroRouter from "../Backend-pf/controllers/rubroController.js";
 
 const app = express();
 const port = 5000;
 
 app.use(cors());
 app.use(express.json());
-app.use(passport.initialize());
 
-app.use("/auth", AuthRouter);
+app.use("/usuario", usuarioRouter);
+app.use("/rubro", rubroRouter);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
