@@ -12,7 +12,4 @@ router.get('', async (req, res) => {
   return res.status(200).json(rubro);
 });
 
-
-
 export default router;
-//CAMBIAR NOMBRE DE LA NINIERA EN LA TABLA RUBROS

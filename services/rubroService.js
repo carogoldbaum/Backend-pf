@@ -13,7 +13,5 @@ export class RubroService {
         
             console.log(response)
             return response.recordset;
-        }
-
-        
+        }    
 }
