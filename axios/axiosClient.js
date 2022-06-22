@@ -11,8 +11,23 @@ const axiosClient = axios.create ({
 export const createUsuario = async () => {
     return axiosClient.post('/rubro', {
         headers: {
-            Authorization: 'Bearer ' + TokenService.getToken()
+            Authorization: 'Bearer ' + createtoken()
         }
+    }).then(response => {
+        if(response.status < 300) {
+            return response.data
+    } else {
+        console.log("La llamada salio bien")
+    }
+    }).catch(error => {
+        console.log(error);
+        return error;
+    });
+}
+
+export const createtoken = async () => {
+    return axiosClient.get('/auth', {
+        
     }).then(response => {
         if(response.status < 300) {
             return response.data
@@ -28,7 +43,7 @@ export const createUsuario = async () => {
 export const getRubro = async () => {
     return axiosClient.post('/rubro', {
         headers: {
-            Authorization: 'Bearer ' + TokenService.getToken()
+            Authorization: 'Bearer ' + createtoken()
         }
     }).then(response => {
         if(response.status < 300) {

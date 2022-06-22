@@ -7,7 +7,7 @@ import usuarioRouter from "../Backend-pf/controllers/usuarioController.js";
 import rubroRouter from "../Backend-pf/controllers/rubroController.js";
 
 const app = express();
-const port = 4000;
+const port = 5000;
 
 app.use(cors());
 app.use(express.json());
