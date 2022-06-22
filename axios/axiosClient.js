@@ -1,5 +1,5 @@
 import axios from "axios";
-import TokenService from '../services/TokenService.js';
+import {TokenService} from '../services/TokenServices.js';
 
 TokenService.getToken();
 

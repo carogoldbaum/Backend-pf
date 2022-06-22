@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import TokenService from '../services/TokenService.js';
+import {TokenService} from '../services/TokenServices.js';
 
 const router = Router();
 const tokenService = new TokenService();
