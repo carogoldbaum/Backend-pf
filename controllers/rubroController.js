@@ -1,40 +1,23 @@
 import { Router } from 'express';
 import { RubroService } from '../services/rubroService.js';
-
 const router = Router();
 const rubroService = new RubroService();
 
 /**
  * @swagger
- * components:
- *  schemas:
- *    Rubro:
- *      type: object
- *      properties:
- *        rubro:
- *          type: string
- *          descripcion: nombre de rubro
- *       required:
- *        - rubro
- *       ejemplo:
- *        rubro: "Pintor"
- */
-
-/**
- * @swagger
- * /api/usuario:
- *  get:
- *    description: Devuelve todos los rubros
- *     tags: [Rubro]	
+ * /rubros/:
+ *   get:
+ *     summary: gets rubros 
+ *     tags: [Rubros]
+ *     parameters:
+ *         schema:
+ *           type: integer
+ *         required: true
  *     responses:
- *      200:
- *        description: Todos los rubros
- *        content:
- *          application/json:
- *            schema:
- *              type: array
- *              items:
- *                $ref: '#/components/schemas/Rubro'
+ *       200:
+ *         description: Rubros by its codigo
+ *       400:
+ *         description: Rubros can not be found
  */
 router.get('/', async (req, res) => {
   console.log(`This is a get operation`);

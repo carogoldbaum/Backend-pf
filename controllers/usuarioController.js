@@ -6,51 +6,32 @@ const usuarioService = new UsuarioService();
 
 /**
  * @swagger
- * components:
- *  schemas:
- *    Usuario:
- *      type: object
- *      properties:
- *        nombre:
- *          type: string
- *          descripcion: nombre de usuario
- *        apellido: 
- *          type: string
- *          descripcion: apellido de usuario
- *        edad:
- *          type: integer
- *          descripcion: edad de usuario
- *        mail: 
- *          type: string
- *          descripcion: mail de usuario
- *       required:
- *        - nombre
- *        - apellido
- *        - edad
- *        - mail
- *       ejemplo:
- *        nombre: Alberto
- *        apellido: Perez
- *        edad: 25
- *        mail: albertoperez25@mail.com
+ *  tags:
+ *    name: Usuario
+ *    description: Endpoint usuario
  */
 
 /**
  * @swagger
- * /api/usuario:
- *  post:
- *    description: Crea un nuevo usuario
- *     tags: [Usuario]	
+ * /Usuario:
+ *   post:
+ *     summary: Create a new Usuario
+ *     tags: [Usuario]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             $ref: '#/components/schemas/Usuario'
+ *             $ref: ''
  *     responses:
- *      200:
- *        description: Usuario creado
+ *       200:
+ *         description: The usuario was successfully created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: ''
+ *       500:
+ *         description: Some server error
  */
 router.post('', async (req, res) => {
   console.log(`This is a post operation`);
