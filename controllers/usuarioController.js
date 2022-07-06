@@ -41,4 +41,20 @@ router.post('', async (req, res) => {
   return res.status(201).json(usuario);
 });
 
+router.post('', async (req, res) => {
+  console.log(`This is a post operation`);
+
+  const iniciarCuenta = await usuarioService.registrarseInicial(req.body);
+
+  return res.status(201).json(iniciarCuenta);
+});
+
+router.post('/login', async (req, res) => {
+  console.log(`This is a get operation`);
+  
+  const LogIn = await usuarioService.IniciarSesion(req.body);
+
+  return res.status(200).json(LogIn);
+});
+
 export default router;

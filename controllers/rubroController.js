@@ -5,10 +5,17 @@ const rubroService = new RubroService();
 
 /**
  * @swagger
- * /rubros/:
+ *  tags:
+ *    name: Rubro
+ *    description: Endpoint rubro
+ */
+
+/**
+ * @swagger
+ * /Rubro:
  *   get:
  *     summary: gets rubros 
- *     tags: [Rubros]
+ *     tags: [Rubro]
  *     parameters:
  *         schema:
  *           type: integer
@@ -19,6 +26,7 @@ const rubroService = new RubroService();
  *       400:
  *         description: Rubros can not be found
  */
+ 
 router.get('/', async (req, res) => {
   console.log(`This is a get operation`);
   

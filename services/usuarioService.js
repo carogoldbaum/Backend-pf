@@ -19,9 +19,36 @@ export class UsuarioService {
             .input('Password',sql.VarChar, usuario?.Password ?? '')
             .input('FechaNacimiento',sql.Date, usuario?.FechaNacimiento ?? '2022-12-30')
             .input('Opinion',sql.VarChar, usuario?.Opinion ?? '')
-            .query(`INSERT INTO ${usuarioTabla}(DNI, foto, NombreApellido, Celular, Mail, Password, FechaNacimiento, Opinion) VALUES (@DNI, @foto, @NombreApellido, @Celular, @Mail, @Password, @FechaNacimiento, @Opinion)`);
+            .query(`UPDATE ${usuarioTabla} SET DNI=@DNI, foto=@foto, NombreApellido=@NombreApellido, Celular=@Celular, Mail=@Mail, Password=@Password, FechaNacimiento=@FechaNacimiento, Opinion=@Opinion`);
         console.log(response)
 
         return response.recordset;
     }
+
+    registrarseInicial = async (iniciarCuenta) => {
+        console.log('This is a function on the service');
+
+        const pool = await sql.connect(config);
+        const response = await pool.request()
+            .input('Password',sql.VarChar, iniciarCuenta?.Password ?? '')
+            .input('Mail',sql.VarChar, iniciarCuenta?.Mail ?? '')
+            .query(`INSERT INTO ${usuarioTabla}(Mail, Password) VALUES (@Mail, @Password)`);
+        console.log(response)
+
+        return response.recordset;
+    }
+
+    IniciarSesion = async (LogIn) => {
+            console.log('This is a function on the service');
+            
+            const pool = await sql.connect(config);
+            const response = await pool.request()
+            .input('Password',sql.VarChar, LogIn?.Password ?? '')
+            .input('Mail',sql.VarChar, LogIn?.Mail ?? '')
+            .query(`select * from ${usuarioTabla} WHERE Password=@Password AND Mail=@Mail`);
+            console.log(response)
+
+            return response.recordset;
+        }    
+
 }
