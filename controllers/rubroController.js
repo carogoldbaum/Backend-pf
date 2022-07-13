@@ -35,4 +35,11 @@ router.get('/', async (req, res) => {
   return res.status(200).json(rubro);
 });
 
+router.get('/prueba', async (req, res) => {
+  console.log(`This is a get operation`);
+  
+
+  return res.status(200).send("rubrdfxgxfggo");
+});
+
 export default router;
