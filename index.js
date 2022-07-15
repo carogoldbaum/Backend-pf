@@ -33,8 +33,8 @@ const specs = swaggerJsdoc (swaggerSpec);
 
 app.use(cors());
 app.use(express.json());
-passport.use(jwtStrategy);
-app.use(passport.initialize());
+//passport.use(jwtStrategy);
+//app.use(passport.initialize());
 
 app.use("/usuario", usuarioRouter);
 app.use("/rubro", rubroRouter);
