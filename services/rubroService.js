@@ -9,7 +9,7 @@ export class RubroService {
             console.log('This is a function on the service');
             const pool = await sql.connect(config);
             const response = await pool.request()
-                .query(`select * from ${rubroTabla}`);
+                .query(`select * from "${rubroTabla}"`);
             console.log(response)
             return response.recordset;
         }    
