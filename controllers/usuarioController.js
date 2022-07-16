@@ -33,6 +33,9 @@ const usuarioService = new UsuarioService();
  *       500:
  *         description: Some server error
  */
+
+
+
 router.post('', async (req, res) => {
   console.log(`This is a post operation`);
 
@@ -77,6 +80,13 @@ router.post('/MailDiferente', async (req, res) => {
   }
 
   
+});
+
+router.get('/llorando', async (req, res) => {
+  console.log(`This is a get operation`);
+  
+
+  return res.status(200).send("aaaaaaaaaaaaaaaaaaa");
 });
 
 export default router;

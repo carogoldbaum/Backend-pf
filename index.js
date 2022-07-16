@@ -28,7 +28,7 @@ const swaggerSpec = {
 }
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = 5000;
 const specs = swaggerJsdoc (swaggerSpec);
 
 app.use(cors());
