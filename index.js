@@ -7,9 +7,22 @@ import usuarioRouter from "./controllers/usuarioController.js";
 import rubroRouter from "./controllers/rubroController.js";
 import path from "path";
 
+import mysql from 'mysql';
+
 //swagger
 import swaggerUI from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
+
+var conexion;
+
+ conexion = mysql.createConnection({
+      host: 'milady.com.ar',
+      database: 'ConApp1',
+      user: 'ConApp',
+      password: 'ConApp'
+
+});
+export default conexion;
 
 const swaggerSpec = {
   definition: {
@@ -46,3 +59,4 @@ app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(specs));
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
+
