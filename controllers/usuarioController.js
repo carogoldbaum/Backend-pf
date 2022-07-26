@@ -36,7 +36,7 @@ const usuarioService = new UsuarioService();
 
 
 
-router.post('', async (req, res) => {
+router.post('/crear', async (req, res) => {
   console.log(`This is a post operation`);
 
   const usuario = await usuarioService.createUsuario(req.body);
@@ -80,13 +80,6 @@ router.post('/MailDiferente', async (req, res) => {
   }
 
   
-});
-
-router.get('/llorando', async (req, res) => {
-  console.log(`This is a get operation`);
-  
-
-  return res.status(200).send("aaaaaaaaaaaaaaaaaaa");
 });
 
 export default router;

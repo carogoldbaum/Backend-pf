@@ -16,10 +16,10 @@ import swaggerJsdoc from "swagger-jsdoc";
 var conexion;
 
  conexion = mysql.createConnection({
-      host: 'milady.com.ar',
-      database: 'ConApp1',
-      user: 'ConApp',
-      password: 'ConApp'
+      host: process.env.HOST,
+      database: process.env.DATABASE,
+      user: process.env.USER,
+      password: process.env.PASSWORD,
 
 });
 export default conexion;
