@@ -39,7 +39,7 @@ const usuarioService = new UsuarioService();
 router.post('/crear', async (req, res) => {
   console.log(`This is a post operation`);
 
-  const usuario = await usuarioService.createUsuario(req.body);
+  const usuario = await usuarioService.DatosPerrsonales(req.body);
 
   return res.status(201).json(usuario);
 });
@@ -47,7 +47,7 @@ router.post('/crear', async (req, res) => {
 router.post('/registrarse', async (req, res) => {
   console.log(`This is a CArolina post operation`);
 
-  const iniciarCuenta = await usuarioService.registrarseInicial(req.body);
+  const iniciarCuenta = await usuarioService.registrarse(req.body);
   
   return res.status(201).json(iniciarCuenta);
 });
@@ -55,7 +55,7 @@ router.post('/registrarse', async (req, res) => {
 router.post('/login', async (req, res) => {
   console.log(`This is a post operation`);
   
-  const LogIn = await usuarioService.IniciarSesion(req.body);
+  const LogIn = await usuarioService.IniciarSesion(req.body, res);
 
   return res.status(200).json(LogIn);
 });
