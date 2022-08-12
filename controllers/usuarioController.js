@@ -35,24 +35,23 @@ const usuarioService = new UsuarioService();
  */
 
 
-
-router.post('/crear', async (req, res) => {
+ router.post('/registrarse', async (req, res) => {
   console.log(`This is a post operation`);
-
-  const usuario = await usuarioService.DatosPerrsonales(req.body);
-
-  return res.status(201).json(usuario);
-});
-
-router.post('/registrarse', async (req, res) => {
-  console.log(`This is a CArolina post operation`);
 
   const iniciarCuenta = await usuarioService.registrarse(req.body);
   
   return res.status(201).json(iniciarCuenta);
 });
 
-router.post('/login', async (req, res) => {
+router.post('/DatosPersonales', async (req, res) => {
+  console.log(`This is a post operation`);
+
+  const usuario = await usuarioService.DatosPersonales(req.body);
+
+  return res.status(201).json(usuario);
+});
+
+router.post('/IniciarSesion', async (req, res) => {
   console.log(`This is a post operation`);
   
   const LogIn = await usuarioService.IniciarSesion(req.body, res);
@@ -78,7 +77,13 @@ router.post('/MailDiferente', async (req, res) => {
   }else{
     return res.status(404).json("El Mail ya esta en uso");
   }
-
+  router.post('/ValidarContraseña', async (req, res) => {
+    console.log(`This is a post operation`);
+    
+    const Contraseña = await usuarioService.ValidarContraseña(req.body);
+  
+    return res.status(200).json(Contraseña);
+  });
   
 });
 

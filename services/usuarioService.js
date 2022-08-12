@@ -7,26 +7,24 @@ const usuarioTabla = process.env.DB_TABLA_USUARIO;
 
 export class UsuarioService {
 
-    DatosPerrsonales = async (usuario) => {
-        conexion.query('UPDATE usuario SET DNI=?, foto=?, NombreApellido=?, Celular=?, FechaNacimiento=?, Opinion=? WHERE Mail=? AND PassWord=?',[usuario.DNI,usuario.foto,usuario.NombreApellido,usuario.Celular,usuario.FechaNacimiento,usuario.opinion,usuario.Mail,usuario.PassWord], function(error,results){
+    DatosPersonales = async (usuario) => {
+        conexion.query('UPDATE usuario SET DNI=?, NombreApellido=?, Celular=?, FechaNacimiento=? WHERE Mail=? AND PassWord=?',[usuario.DNI,usuario.NombreApellido,usuario.Celular,usuario.FechaNacimiento,usuario.Mail,usuario.PassWord], function(error,results,fields){
             if(error)
             throw error;
-            results.forEach(result => {
-                console.log(result)
-            });
+   
         })
         
         conexion.end();
     };
 
-    registrarse = async (iniciarCuenta) => {
+    /*registrarse = async (iniciarCuenta) => {
         let existe = true; // await this.MailDiferente(iniciarCuenta.Mail);
 
         if  (existe){
 
             console.log(iniciarCuenta)
 
-            conexion.query('INSERT INTO usuario(idUsuario, Mail, Password) VALUES (?, ?, ?)', [iniciarCuenta?.IdUsuario, iniciarCuenta?.Mail, iniciarCuenta?.Password], function (error, results, fields){
+            conexion.query('INSERT INTO usuario(Mail, Password) VALUES (?, ?, ?)', [iniciarCuenta?.Mail, iniciarCuenta?.Password], function (error, results, fields){
                 if(error){
                 console.log(error)
                 }
@@ -34,7 +32,7 @@ export class UsuarioService {
                 return Ultimo;
                 });
             }
-        }
+        }*/
     
 
 /*            const pool = await sql.connect(config);
@@ -43,6 +41,7 @@ export class UsuarioService {
                 .input('Mail',sql.VarChar, iniciarCuenta?.Mail ?? '')
                 .query(`INSERT INTO "${usuarioTabla}"(Mail, Password) VALUES (@Mail, @Password)`);
                 let Ultimo = await this.UltimoId();
+                 console.log(results.insertId);
                 return Ultimo;
         }else{
             return null;
@@ -63,7 +62,7 @@ export class UsuarioService {
             return response.recordset;
         }    
 */
-IniciarSesion = async (LogIn, res) => {
+/*IniciarSesion = async (LogIn, res) => {
     console.log('This is a function on the service');
     
     conexion.query('select * from usuario where Password=? AND Mail=?', [LogIn?.Password, LogIn?.Mail], function (error, results, fields){
@@ -75,10 +74,9 @@ IniciarSesion = async (LogIn, res) => {
 
     })
 
-   // return response.recordset;
-}
+}*/
 
-        Restablecer = async (InfoRestablecer) => {
+       /* Restablecer = async (InfoRestablecer) => {
             console.log('This is a function on the service');
 
             const pool = await sql.connect(config);
@@ -89,9 +87,9 @@ IniciarSesion = async (LogIn, res) => {
             console.log(response)
 
             return response.recordset;
-        }    
+        }    */
 
-        MailDiferente = async (MailIngresado) => {
+       /* MailDiferente = async (MailIngresado) => {
             let respuesta = false;
 
             console.log('This is a function on the service');
@@ -103,24 +101,24 @@ IniciarSesion = async (LogIn, res) => {
                     console.log(result);
                 });
         
-            })     
+            })   */  
            
-            .input('Mail',sql.VarChar, MailIngresado?.Mail ?? '')
+            /*.input('Mail',sql.VarChar, MailIngresado?.Mail ?? '')
             .query(`select * from "${usuarioTabla}" WHERE Mail=@Mail`);
- */
-            if(response.recordset.length != 0){
+ 
+           /* if(response.recordset.length != 0){
                 respuesta = true;
             }
 
             return respuesta;
         
-        }    
-        UltimoId = async () => {
+        }   */ 
+        /*UltimoId = async () => {
             let respuesta = 0;
             console.log('This is a function on the service');
             const pool = await sql.connect(config);
             const response = await pool.request()
-            .query(`select Max(IdUsuario) as Ultimo from "${usuarioTabla}"`);
+            conexion.query(`select Max(IdUsuario) as Ultimo from "${usuarioTabla}"`);
 
             if(response.recordset.length != 0){
                 respuesta = response.recordset[0];
@@ -128,5 +126,5 @@ IniciarSesion = async (LogIn, res) => {
 
             return respuesta;
         
-        }    
+        }    */
 }
