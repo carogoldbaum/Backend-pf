@@ -1,12 +1,19 @@
 import 'dotenv/config'
+import mysql from 'mysql2/promise'
 
-const config = {
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  server: process.env.HOST,
-  database: process.env.DATABASE,
-  options: { 
-    trustServerCertificate: true,
-  } 
-}
-export default config;
+
+var conexion = await mysql.createConnection({
+      host: process.env.HOST,
+      database: process.env.DATABASE,
+      user: process.env.USER,
+      password: process.env.PASSWORD,
+
+});
+
+
+conexion.connect(function(err) {
+  if (err) throw err;
+  console.log("Database Connected!");
+});
+
+export default conexion;

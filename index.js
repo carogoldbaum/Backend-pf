@@ -13,16 +13,6 @@ import mysql from 'mysql';
 import swaggerUI from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
 
-var conexion;
-
- conexion = mysql.createConnection({
-      host: process.env.HOST,
-      database: process.env.DATABASE,
-      user: process.env.USER,
-      password: process.env.PASSWORD,
-
-});
-export default conexion;
 
 const swaggerSpec = {
   definition: {

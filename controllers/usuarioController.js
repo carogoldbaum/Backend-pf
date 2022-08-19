@@ -72,11 +72,10 @@ router.post('/MailDiferente', async (req, res) => {
   
   const Mail = await usuarioService.MailDiferente(req.body.Mail);
 
-  if (Mail !=null){
-    return res.status(200).json(Mail);
-  }else{
-    return res.status(404).json("El Mail ya esta en uso");
-  }
+  return res.status(200).json(Mail);
+
+});
+
   router.post('/ValidarContraseña', async (req, res) => {
     console.log(`This is a post operation`);
     
@@ -85,6 +84,6 @@ router.post('/MailDiferente', async (req, res) => {
     return res.status(200).json(Contraseña);
   });
   
-});
+
 
 export default router;
