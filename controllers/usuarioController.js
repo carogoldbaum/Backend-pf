@@ -36,7 +36,6 @@ const usuarioService = new UsuarioService();
 
 
  router.post('/registrarse', async (req, res) => {
-  console.log(`This is a post operation`);
 
   const iniciarCuenta = await usuarioService.registrarse(req.body);
   
@@ -44,7 +43,6 @@ const usuarioService = new UsuarioService();
 });
 
 router.post('/DatosPersonales', async (req, res) => {
-  console.log(`This is a post operation`);
 
   const usuario = await usuarioService.DatosPersonales(req.body);
 
@@ -52,37 +50,26 @@ router.post('/DatosPersonales', async (req, res) => {
 });
 
 router.post('/IniciarSesion', async (req, res) => {
-  console.log(`This is a post operation`);
+  console.log(req.body)
+  const LogIn = await usuarioService.IniciarSesion(req.body);
   
-  const LogIn = await usuarioService.IniciarSesion(req.body, res);
-
   return res.status(200).json(LogIn);
 });
 
 router.post('/restablecer', async (req, res) => {
-  console.log(`This is a post operation`);
   
   const InfoRestablecer = await usuarioService.Restablecer(req.body);
 
   return res.status(200).json(InfoRestablecer);
 });
 
-router.post('/MailDiferente', async (req, res) => {
-  console.log(`This is a post operation`);
+router.get('/MailDiferente', async (req, res) => {
   
   const Mail = await usuarioService.MailDiferente(req.body.Mail);
 
   return res.status(200).json(Mail);
 
 });
-
-  router.post('/ValidarContraseña', async (req, res) => {
-    console.log(`This is a post operation`);
-    
-    const Contraseña = await usuarioService.ValidarContraseña(req.body);
-  
-    return res.status(200).json(Contraseña);
-  });
   
 
 

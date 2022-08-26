@@ -6,52 +6,56 @@ const usuarioTabla = process.env.DB_TABLA_USUARIO;
 
 export class UsuarioService {
 
-    DatosPersonales = async (usuario) => {  
+    DatosPersonales = async (usuario) => {  //funciona
       
         const Id = await this.UltimoId();
 
         let query=`UPDATE usuario set DNI = ?, NombreApellido= ?, Celular= ?, FechaNacimiento= ? WHERE IdUsuario= ?`
  
-        let values=[usuario.DNI, usuario.NombreApellido, usuario.Celular, usuario.FechaNacimiento, Id]
+        let values=[usuario.data.DNI, usuario.data.NombreApellido, usuario.data.Celular, usuario.data.FechaNacimiento, Id]
 
         const [result,fields] = await conexion.execute(query, values);
-        console.log(result.affectedRows)
         return result;
     }
 
     registrarse = async (iniciarCuenta) => { //funciona
-        const mailExiste = await this.MailDiferente(iniciarCuenta.Mail);
+        const mailExiste = await this.MailDiferente(iniciarCuenta.data.email);
         
         if  (mailExiste == false){
                 let query=`INSERT INTO usuario (Mail, Password) VALUES (?, ?)`
  
-                let values=[iniciarCuenta.Mail, iniciarCuenta.Password]
+                let values=[iniciarCuenta.data.email, iniciarCuenta.data.password]
         
                 const [result,fields] = await conexion.execute(query, values);
-
             }
             else{
                 return "Mail ya existe";
         }
         }
 
-        IniciarSesion = async (LogIn, res) => {
-            let query=`SELECT * from usuario where Password=? AND Mail=?`
+        IniciarSesion = async (LogIn) => { //funciona 2
+            let validar = false
+            console.log("algooooooooooooo")
+            let query=`SELECT * from usuario where password=? AND email=?`
  
-            let values=[LogIn.Password, LogIn.Mail]
+            let values=[LogIn.data.password, LogIn.data.email]
 
             const [result,fields] = await conexion.execute(query, values);
-            console.log(result.affectedRows)
-            return result;
+
+            if(result.length != 0){
+                validar = true;
+            }
+
+            return validar;
         }
 
-        Restablecer = async (InfoRestablecer) => {
+        Restablecer = async (InfoRestablecer) => { //funciona
             let query=`UPDATE usuario SET Password = ? WHERE Mail= ?`
  
-            let values=[InfoRestablecer.Password, InfoRestablecer.Mail]
+            let values=[InfoRestablecer.data.password, InfoRestablecer.data.email]
     
             const [result,fields] = await conexion.execute(query, values);
-            console.log(result.affectedRows)
+          
             return result;
         }    
 
@@ -59,7 +63,8 @@ export class UsuarioService {
             let MailExiste = false;
             
             let query=`SELECT * from usuario WHERE Mail= ?`
-            let values=[MailIngresado]
+            let values=[MailIngresado.data.email]
+
             const [result,fields] = await conexion.execute(query, values);
            
            if(result.length != 0){
@@ -72,8 +77,8 @@ export class UsuarioService {
         UltimoId = async () => { //funciona
         
             let query=`SELECT Max(IdUsuario) as Ultimo from usuario`
+
             const [result,fields] = await conexion.execute(query);
-            console.log(result)
             return result;
         }    
 }
