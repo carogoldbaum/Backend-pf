@@ -46,7 +46,7 @@ app.use("/auth", TokenRouter);
 app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(specs));
 
 
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
-});
+app.listen(process.env.PORT || PORT, () => {
+  console.log(`Live at ${process.env.PORT || PORT}`);
+})
 
