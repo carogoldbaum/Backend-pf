@@ -19,12 +19,13 @@ export class UsuarioService {
     }
 
     registrarse = async (iniciarCuenta) => { //funciona
-        const mailExiste = await this.MailDiferente(iniciarCuenta.data.email);
+   
+        const mailExiste = await this.MailDiferente(iniciarCuenta.email);
         
         if  (mailExiste == false){
-                let query=`INSERT INTO usuario (Mail, Password) VALUES (?, ?)`
+                let query=`INSERT INTO usuario (email, password) VALUES (?, ?)`
  
-                let values=[iniciarCuenta.data.email, iniciarCuenta.data.password]
+                let values=[iniciarCuenta.email, iniciarCuenta.password]
         
                 const [result,fields] = await conexion.execute(query, values);
             }
@@ -60,10 +61,11 @@ export class UsuarioService {
         }    
 
         MailDiferente = async (MailIngresado) => { //funciona
+    
             let MailExiste = false;
             
-            let query=`SELECT * from usuario WHERE Mail= ?`
-            let values=[MailIngresado.data.email]
+            let query=`SELECT * from usuario WHERE email= ?`
+            let values=[MailIngresado]
 
             const [result,fields] = await conexion.execute(query, values);
            

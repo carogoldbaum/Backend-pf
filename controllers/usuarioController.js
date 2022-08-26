@@ -65,9 +65,9 @@ router.post('/restablecer', async (req, res) => {
 
 router.get('/MailDiferente', async (req, res) => {
   
-  const Mail = await usuarioService.MailDiferente(req.body.Mail);
+  const email = await usuarioService.MailDiferente(req.body.email);
 
-  return res.status(200).json(Mail);
+  return res.status(200).json(email);
 
 });
   
