@@ -8,17 +8,19 @@ export class UsuarioService {
 
     DatosPersonales = async (usuario) => {  //funciona
       
-        const Id = await this.UltimoId();
+        let Id = await this.UltimoId();
+
+        console.log(Id)
 
         let query=`UPDATE usuario set DNI = ?, NombreApellido= ?, Celular= ?, FechaNacimiento= ? WHERE IdUsuario= ?`
  
-        let values=[usuario.data.DNI, usuario.data.NombreApellido, usuario.data.Celular, usuario.data.FechaNacimiento, Id]
+        let values=[usuario.DNI, usuario.NombreApellido, usuario.Celular, usuario.FechaNacimiento, Id]
 
         const [result,fields] = await conexion.execute(query, values);
         return result;
     }
 
-    registrarse = async (iniciarCuenta) => { //funciona
+    registrarse = async (iniciarCuenta) => { //funciona caro
    
         const mailExiste = await this.MailDiferente(iniciarCuenta.email);
         
@@ -60,7 +62,7 @@ export class UsuarioService {
             return result;
         }    
 
-        MailDiferente = async (MailIngresado) => { //funciona
+        MailDiferente = async (MailIngresado) => { //funciona caro
     
             let MailExiste = false;
             
@@ -78,9 +80,10 @@ export class UsuarioService {
 
         UltimoId = async () => { //funciona
         
-            let query=`SELECT Max(IdUsuario) as Ultimo from usuario`
-
+            let query=`SELECT MAX(IdUsuario) as ultimoId from usuario`
+          
             const [result,fields] = await conexion.execute(query);
+                
             return result;
         }    
 }
