@@ -23,11 +23,11 @@ const swaggerSpec = {
     },
     severs: [
       {
-        url: "http://localhost:5000"
+        url: "http://localhost:3000"
       }
     ]
   },
-  apis: [`${path.join("localhost:5000", "../controllers/*.js")}`]
+  apis: [`${path.join("localhost:3000", "../controllers/*.js")}`]
 }
 
 
