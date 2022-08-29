@@ -30,6 +30,8 @@ const swaggerSpec = {
   apis: [`${path.join("localhost:5000", "../controllers/*.js")}`]
 }
 
+
+
 const app = express();
 const PORT = 5000;
 const specs = swaggerJsdoc (swaggerSpec);
@@ -45,6 +47,12 @@ app.use("/auth", TokenRouter);
 //app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
 app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(specs));
 
+
+app.get('/', async (req, res) => {
+  console.log(`This is a get operation`);
+
+  return res.status(200).json();
+});
 
 app.listen(process.env.PORT || PORT, () => {
   console.log(`Live at ${process.env.PORT || PORT}`);
