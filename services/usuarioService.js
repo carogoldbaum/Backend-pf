@@ -34,12 +34,12 @@ export class UsuarioService {
         }
         }
 
-        IniciarSesion = async (LogIn) => { //funciona 2
+        IniciarSesion = async (LogIn) => { //funciona caro
             let validar = false
-            console.log("algooooooooooooo")
+       
             let query=`SELECT * from usuario where password=? AND email=?`
  
-            let values=[LogIn.data.password, LogIn.data.email]
+            let values=[LogIn.password, LogIn.email]
 
             const [result,fields] = await conexion.execute(query, values);
 
@@ -50,10 +50,10 @@ export class UsuarioService {
             return validar;
         }
 
-        Restablecer = async (InfoRestablecer) => { //funciona
-            let query=`UPDATE usuario SET Password = ? WHERE Mail= ?`
+        Restablecer = async (InfoRestablecer) => { //funcionan caro
+            let query=`UPDATE usuario SET Password = ? WHERE email= ?`
  
-            let values=[InfoRestablecer.data.password, InfoRestablecer.data.email]
+            let values=[InfoRestablecer.password, InfoRestablecer.email]
     
             const [result,fields] = await conexion.execute(query, values);
           
