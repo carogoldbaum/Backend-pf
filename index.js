@@ -33,7 +33,6 @@ const swaggerSpec = {
 
 
 const app = express();
-const PORT = 5000 || process.env.PORT;
 const specs = swaggerJsdoc (swaggerSpec);
 
 app.use(cors());
@@ -54,7 +53,7 @@ app.get('/', async (req, res) => {
   return res.status(200).json();
 });
 
-app.listen(process.env.PORT || PORT, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log(`Live at ${process.env.PORT || PORT}`);
 })
 
