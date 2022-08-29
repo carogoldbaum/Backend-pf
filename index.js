@@ -53,7 +53,9 @@ app.get('/', async (req, res) => {
   return res.status(200).json();
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`Live at ${process.env.PORT || PORT}`);
-})
+const { PORT=3000, LOCAL_ADDRESS='0.0.0.0' } = process.env
+server.listen(PORT, LOCAL_ADDRESS, () => {
+  const address = server.address();
+  console.log('server listening at', address);
+});
 
