@@ -6,11 +6,9 @@ const usuarioTabla = process.env.DB_TABLA_USUARIO;
 
 export class UsuarioService {
 
-    DatosPersonales = async (usuario) => {  //funciona
+    DatosPersonales = async (usuario) => {  //funciona caro
       
         let Id = await this.UltimoId();
-
-        console.log(Id)
 
         let query=`UPDATE usuario set DNI = ?, NombreApellido= ?, Celular= ?, FechaNacimiento= ? WHERE IdUsuario= ?`
  
@@ -78,12 +76,12 @@ export class UsuarioService {
             return MailExiste;
         }
 
-        UltimoId = async () => { //funciona
+        UltimoId = async () => { //funciona caro
         
             let query=`SELECT MAX(IdUsuario) as ultimoId from usuario`
           
             const [result,fields] = await conexion.execute(query);
-                
-            return result;
+
+            return result[0].ultimoId;
         }    
 }
