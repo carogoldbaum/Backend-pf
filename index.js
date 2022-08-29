@@ -53,7 +53,7 @@ app.get('/', async (req, res) => {
   return res.status(200).json();
 });
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log(`Live at ${process.env.PORT || PORT}`);
 })
 
