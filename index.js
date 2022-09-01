@@ -31,7 +31,6 @@ const swaggerSpec = {
 }
 
 const app = express();
-const PORT = 5000;
 const specs = swaggerJsdoc (swaggerSpec);
 
 app.use(cors());
@@ -46,7 +45,9 @@ app.use("/auth", TokenRouter);
 app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(specs));
 
 
-app.listen(process.env.PORT || PORT, () => {
-  console.log(`Live at ${process.env.PORT || PORT}`);
-})
+const { PORT=3000, LOCAL_ADDRESS='0.0.0.0' } = process.env
+server.listen(PORT, LOCAL_ADDRESS, () => {
+  const address = server.address();
+  console.log('server listening at', address);
+});
 
