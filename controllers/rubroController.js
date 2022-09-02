@@ -27,7 +27,7 @@ const rubroService = new RubroService();
  *         description: Rubros can not be found
  */
  
-router.get('/rubros', async (req, res) => {
+router.get('/', async (req, res) => {
   console.log(`This is a get operation`);
   
   const rubro = await rubroService.getRubro();
