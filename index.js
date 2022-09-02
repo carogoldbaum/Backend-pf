@@ -40,7 +40,7 @@ passport.use(jwtStrategy);
 app.use(passport.initialize());
 
 app.use("/usuario", usuarioRouter);
-app.use("/rubro", rubroRouter);
+app.use("/", rubroRouter);
 app.use("/auth", TokenRouter);
 //app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
 app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(specs));
