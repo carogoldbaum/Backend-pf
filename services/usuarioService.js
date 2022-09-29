@@ -9,6 +9,8 @@ export class UsuarioService {
     DatosPersonales = async (usuario) => {  //funciona caro
       
         let Id = await this.UltimoId();
+        console.log(usuario)
+        console.log("drgtsdiuswihkishuhseisehdiuhyfeis",usuario)
 
         let query=`UPDATE usuario set DNI = ?, NombreApellido= ?, Celular= ?, FechaNacimiento= ? WHERE IdUsuario= ?`
  
