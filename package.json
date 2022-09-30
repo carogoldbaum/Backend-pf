@@ -44,7 +44,7 @@
   },
   "homepage": "https://github.com/carogoldbaum/Backend-pf#readme",
   "keywords": [],
-  "engine"{
-    "node":"14.0"
+  "engine": {
+    "node":"18.8.0"
   }
 }
