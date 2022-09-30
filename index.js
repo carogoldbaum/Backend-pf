@@ -32,6 +32,7 @@ app.use(cors());
 app.use(express.json());
 passport.use(jwtStrategy);
 app.use(passport.initialize());
+app.use(express.urlencoded({ extended: false }));
 
 app.use("/usuario", usuarioRouter);
 app.use("/rubro", rubroRouter);
