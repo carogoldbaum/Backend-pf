@@ -1,10 +1,11 @@
 import sql from 'mssql'
+import conexion from '../db.js'
 import 'dotenv/config'
-import connectionRequest from '../db.js'
+
 const rubroTabla = process.env.DB_TABLA_RUBRO;
 
 export class RubroService {
-     getRubro = async () => { //funciona
+        getRubro = async () => { //funciona
             console.log('Get All rubros in rubros Service');
             let query=`SELECT * from rubros`
             const [result,fields] = await conexion.execute(query);
