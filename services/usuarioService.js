@@ -7,9 +7,9 @@ export class UsuarioService {
       
         let Id = await this.UltimoId();
         let query=`UPDATE usuario set DNI = ?, NombreApellido= ?, Celular= ?, FechaNacimiento= ? WHERE IdUsuario= ?`
- 
         let values=[usuario.DNI, usuario.NombreApellido, usuario.Celular, usuario.FechaNacimiento, Id]
         const [result,fields] = await conexion.execute(query, values);
+     
         return result;
     }
     registrarse = async (iniciarCuenta) => { //funciona caro

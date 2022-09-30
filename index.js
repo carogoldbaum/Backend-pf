@@ -7,6 +7,7 @@ import usuarioRouter from "./controllers/usuarioController.js";
 import rubroRouter from "./controllers/rubroController.js";
 import path from "path";
 import mysql from 'mysql';
+
 //swagger
 import swaggerUI from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
@@ -37,6 +38,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/usuario", usuarioRouter);
 app.use("/rubro", rubroRouter);
 app.use("/auth", TokenRouter);
+
 //app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
 app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(specs));
 app.listen(process.env.PORT || PORT, () => {

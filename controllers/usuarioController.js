@@ -1,8 +1,12 @@
 import { Router } from 'express';
 import { UsuarioService } from '../services/usuarioService.js';
+import { postulantesService } from '../services/postulantesService.js';
+import { postulanteRubrosService } from '../services/postulanteRubrosService.js';
 
 const router = Router();
 const usuarioService = new UsuarioService();
+const PostulantesService = new postulantesService();
+const PostulanteRubrosService = new postulanteRubrosService();
 
 /**
  * @swagger
@@ -45,7 +49,12 @@ const usuarioService = new UsuarioService();
 router.post('/DatosPersonales', async (req, res) => {
 
   const usuario = await usuarioService.DatosPersonales(req.body);
-
+  
+  if (req.body.idRubro!= null){
+    const postu =  await PostulantesService.InsertarPostulante(req.body.idUsuario);
+    const pr = await PostulanteRubrosService.InsertarRubro(req.body.idRubro, req.body.idUsuario);
+  }
+  
   return res.status(201).json(usuario);
 });
 
@@ -68,9 +77,6 @@ router.get('/MailDiferente', async (req, res) => {
   const email = await usuarioService.MailDiferente(req.body.email);
 
   return res.status(200).json(email);
-
 });
   
-
-
 export default router;
