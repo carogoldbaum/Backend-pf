@@ -9,7 +9,7 @@ export class RubroService {
             console.log('Get All rubros in rubros Service');
             let query=`SELECT * from rubros`
             const [result,fields] = await conexion.execute(query);
-            console.log(result);
+            
             return result;
         }    
 }

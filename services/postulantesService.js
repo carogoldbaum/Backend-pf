@@ -5,11 +5,11 @@ const postulantestabla = process.env.DB_TABLA_POSTULANTES;
 
 export class postulantesService {
    
-    InsertarPostulante = async (id) => { //funciona caro
+    InsertarPostulante = async (idUsuario, DNI) => { //funciona caro
         
-                let query=`INSERT INTO postulantes (idUsuario) VALUES (?)`
- 
-                let values=[id.idUsuario]
+                let query=`INSERT INTO postulantes (idUsuario, DNI) VALUES (?,?)`
+                console.log("IDDDDDDDDDDDDDDDDDDDDDDDDD", idUsuario, DNI)
+                let values=[idUsuario, DNI]
         
                 const [result,fields] = await conexion.execute(query, values);
             }

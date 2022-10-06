@@ -44,9 +44,10 @@ export class UsuarioService {
         }
 
         Restablecer = async (InfoRestablecer) => { //funcionan caro
+            console.log(InfoRestablecer)
             let query=`UPDATE usuario SET Password = ? WHERE email= ?`
 
-            let values=[InfoRestablecer.password, InfoRestablecer.email]
+            let values=[InfoRestablecer.password2, InfoRestablecer.email]
 
             const [result,fields] = await conexion.execute(query, values);
 
