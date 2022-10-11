@@ -12,10 +12,8 @@ router.get('/BuscarTrabajadores', async (req, res) => {
 
   console.log("resultado de busqueda del id usuario", IdTrabajador)
 
-  var i
-
-      console.log("id trabajador",IdTrabajador[i++].IdUsuario)
-      const InfoTrabajador = await usuarioService.BuscarTrabajadoresParte2(IdTrabajador[i].IdUsuario);
+      console.log("id trabajador",IdTrabajador[0].IdUsuario)
+      const InfoTrabajador = await usuarioService.BuscarTrabajadoresParte2(IdTrabajador[0].IdUsuario);
 
       return res.status(200).json(InfoTrabajador);
   
