@@ -3,8 +3,10 @@ import cors from "cors";
 import jwtStrategy from './common/jwt.strategy.js';
 import passport from 'passport';
 import TokenRouter from './controllers/TokenController.js';
+import postulantesRubrosRouter from "./controllers/postulantesRubrosController.js";
 import usuarioRouter from "./controllers/usuarioController.js";
 import rubroRouter from "./controllers/rubroController.js";
+
 import path from "path";
 import mysql from 'mysql';
 
@@ -38,6 +40,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/usuario", usuarioRouter);
 app.use("/rubro", rubroRouter);
 app.use("/auth", TokenRouter);
+app.use("/postulantesRubros", postulantesRubrosRouter);
 
 //app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
 app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(specs));

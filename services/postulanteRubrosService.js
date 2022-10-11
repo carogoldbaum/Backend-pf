@@ -13,5 +13,16 @@ export class postulanteRubrosService {
         
                 const [result,fields] = await conexion.execute(query, values);
             }
+
+            BuscarTrabajadores = async (IdRubro) => { //
+                
+                let query=`SELECT IdUsuario from postulantesrubro WHERE IdRubro=? `
+                
+                let values=[IdRubro]
+              
+                const [result,fields] = await conexion.execute(query, values);
+             
+                return result;
+            }
         
 }
