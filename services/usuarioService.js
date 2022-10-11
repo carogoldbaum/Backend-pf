@@ -29,6 +29,7 @@ export class UsuarioService {
         }
 
         IniciarSesion = async (LogIn) => { //funciona caro
+            console.log(LogIn)
             let validar = false
 
             let query=`SELECT * from usuario where password=? AND email=?`

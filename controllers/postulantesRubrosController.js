@@ -7,15 +7,25 @@ const usuarioService = new UsuarioService();
 const PostulanteRubrosService = new postulanteRubrosService();
 
 router.get('/BuscarTrabajadores', async (req, res) => {
- 
+  console.log("dfgdfhdhdhd",req.body)
   const IdTrabajador = await PostulanteRubrosService.BuscarTrabajadores(req.body.IdRubro);
 
   console.log("resultado de busqueda del id usuario", IdTrabajador)
 
-      console.log("id trabajador",IdTrabajador[0].IdUsuario)
-      const InfoTrabajador = await usuarioService.BuscarTrabajadoresParte2(IdTrabajador[0].IdUsuario);
+  let x 
+  let InfoTrabajador
 
-      return res.status(200).json(InfoTrabajador);
+  IdTrabajador.forEach(item =>{
+     x = item.IdUsuario
+    console.log("resultado foreach", x)
+    console.log("id trabajador", x)
+    InfoTrabajador =  usuarioService.BuscarTrabajadoresParte2(x);
+
+  });
+
+
+  return res.status(200).json(InfoTrabajador);
+     
   
 });
   
