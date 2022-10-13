@@ -7,8 +7,8 @@ const usuarioService = new UsuarioService();
 const PostulanteRubrosService = new postulanteRubrosService();
 
 router.get('/BuscarTrabajadores', async (req, res) => {
-  console.log("dfgdfhdhdhd",req.body)
-  const IdTrabajador = await PostulanteRubrosService.BuscarTrabajadores(req.body.IdRubro);
+  console.log("el id que llega",req.body)
+  const IdTrabajador = await PostulanteRubrosService.BuscarTrabajadores(req);
 
   console.log("resultado de busqueda del id usuario", IdTrabajador)
 
@@ -23,10 +23,9 @@ router.get('/BuscarTrabajadores', async (req, res) => {
 
   });
 
-
   return res.status(200).json(InfoTrabajador);
      
-  
 });
   
 export default router;
+
