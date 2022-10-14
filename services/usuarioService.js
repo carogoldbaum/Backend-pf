@@ -77,12 +77,12 @@ export class UsuarioService {
 
         ObtenerInfoTrabajador = async (IdTrabajador) => { //
           
-              let query=`SELECT NombreApellido, Foto from usuario where IdUsuario=?`
+              let query=`SELECT NombreApellido, Foto, IdUsuario from usuario where IdUsuario=?`
     
             let values=[IdTrabajador.IdUsuario]
 
             const [result,fields] = await conexion.execute(query, values);
-            
+            console.log("resultado muy esperado", result )
             return result;
         }
 }

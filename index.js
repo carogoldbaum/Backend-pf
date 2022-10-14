@@ -6,6 +6,7 @@ import TokenRouter from './controllers/TokenController.js';
 import postulantesRubrosRouter from "./controllers/postulantesRubrosController.js";
 import usuarioRouter from "./controllers/usuarioController.js";
 import rubroRouter from "./controllers/rubroController.js";
+import postulantesRouter from "./controllers/postulantesController.js";
 
 import path from "path";
 import mysql from 'mysql';
@@ -41,6 +42,7 @@ app.use("/usuario", usuarioRouter);
 app.use("/rubro", rubroRouter);
 app.use("/auth", TokenRouter);
 app.use("/postulantesRubros", postulantesRubrosRouter);
+app.use("/postulantes", postulantesRouter);
 
 //app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
 app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(specs));

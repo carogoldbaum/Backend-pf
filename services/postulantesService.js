@@ -13,5 +13,16 @@ export class postulantesService {
         
                 const [result,fields] = await conexion.execute(query, values);
             }
+
+            InsertarPostulanteContratado = async (info) => { 
+        console.log("recibe funcion", info.time, info.date, info.idUsuario )
+                let query=`UPDATE postulantes SET HoraContratado = ?, FechaContratado = ? WHERE idUsuario=?`
+
+                let values=[info.time, info.date, info.idUsuario]
+        
+                const [result,fields] = await conexion.execute(query, values);
+                console.log("resultado", result)
+                return result;
+            }
         
 }
