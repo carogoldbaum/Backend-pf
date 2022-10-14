@@ -75,15 +75,14 @@ export class UsuarioService {
             return result[0].ultimoId;
         }    
 
-        BuscarTrabajadoresParte2 = async (IdTrabajador) => { //
-            console.log("probandooooooo",IdTrabajador)
+        ObtenerInfoTrabajador = async (IdTrabajador) => { //
           
               let query=`SELECT NombreApellido, Foto from usuario where IdUsuario=?`
     
-            let values=[IdTrabajador]
+            let values=[IdTrabajador.IdUsuario]
 
             const [result,fields] = await conexion.execute(query, values);
-                console.log("resultado ",result)
+            
             return result;
         }
 }

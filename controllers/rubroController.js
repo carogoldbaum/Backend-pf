@@ -28,7 +28,6 @@ const rubroService = new RubroService();
  */
  
 router.get('/rubro', async (req, res) => {
-  console.log(`This is a get operation`);
   
   const rubro = await rubroService.getRubro();
 

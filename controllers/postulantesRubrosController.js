@@ -6,26 +6,21 @@ const router = Router();
 const usuarioService = new UsuarioService();
 const PostulanteRubrosService = new postulanteRubrosService();
 
-router.get('/BuscarTrabajadores', async (req, res) => {
-  console.log("el id que llega",req.body)
-  const IdTrabajador = await PostulanteRubrosService.BuscarTrabajadores(req);
+router.get('/BuscarTrabajadores/:id', async (req, res) => {
 
-  console.log("resultado de busqueda del id usuario", IdTrabajador)
+  const IdTrabajador = await PostulanteRubrosService.BuscarTrabajadores(req.params);
 
-  let x 
-  let InfoTrabajador
-
-  IdTrabajador.forEach(item =>{
-     x = item.IdUsuario
-    console.log("resultado foreach", x)
-    console.log("id trabajador", x)
-    InfoTrabajador =  usuarioService.BuscarTrabajadoresParte2(x);
-
-  });
-
-  return res.status(200).json(InfoTrabajador);
-     
+  const informacionTrabajadores = await Promise.all(
+    IdTrabajador.map(async id => {
+    const infoTrabajador = await usuarioService.ObtenerInfoTrabajador(id);
+    console.log("Trabajador con id:", id , "Tiene esta informacion: ", infoTrabajador);
+    let persona = infoTrabajador[0]
+    return persona;
+}))
+  console.log("respuesta final", informacionTrabajadores)
+  return res.status(200).json(informacionTrabajadores);
 });
-  
+
 export default router;
 
+    
